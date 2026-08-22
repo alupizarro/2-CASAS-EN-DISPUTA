@@ -12,11 +12,11 @@ También se implementa la lógica de turnos, movimiento de las fichas, conquista
 
 ## Herramientas utilizadas
 
-* Visual Studio Code
-* JavaScript
-* Node.js
-* Git
-* GitHub
+- Visual Studio Code
+- JavaScript
+- Node.js
+- Git
+- GitHub
 
 ## ¿Qué es Node.js?
 
@@ -93,9 +93,9 @@ La función `generarCasas(semilla)` utiliza este generador para crear 5 casas.
 
 Se controla que:
 
-* no haya casas repetidas;
-* las casas no ocupen la posición inicial del Jugador 1;
-* las casas no ocupen la posición inicial del Jugador 2.
+- no haya casas repetidas;
+- las casas no ocupen la posición inicial del Jugador 1;
+- las casas no ocupen la posición inicial del Jugador 2.
 
 La generación es determinista porque al utilizar la misma semilla se obtiene la misma secuencia y, por lo tanto, las mismas casas.
 
@@ -115,10 +115,10 @@ calcularMovimientosValidos(posicion, cantidad, fichas)
 
 Se tienen en cuenta cuatro direcciones:
 
-* arriba
-* abajo
-* izquierda
-* derecha
+- arriba
+- abajo
+- izquierda
+- derecha
 
 Para cada dirección se calcula una nueva posición.
 
@@ -154,8 +154,8 @@ El juego utiliza un máximo de 50 turnos.
 
 Los jugadores se alternan:
 
-* los turnos impares corresponden al Jugador 1;
-* los turnos pares corresponden al Jugador 2.
+- los turnos impares corresponden al Jugador 1;
+- los turnos pares corresponden al Jugador 2.
 
 En cada turno se tira el dado y se calculan los movimientos válidos para las fichas del jugador.
 
@@ -170,19 +170,21 @@ Cuando una ficha encuentra una casa:
 3. La casa se elimina de la lista de casas disponibles.
 4. Se guarda una nueva ficha para ser ubicada en el próximo turno.
 
+Cuando corresponde colocar una nueva ficha, el programa muestra la posición donde fue ubicada.
+
 ## Fin del juego
 
 El juego termina cuando:
 
-* se conquistan todas las casas, o
-* se alcanzan los 50 turnos máximos.
+- se conquistan todas las casas, o
+- se alcanzan los 50 turnos máximos.
 
 Al finalizar se muestran:
 
-* cantidad de turnos realizados;
-* casas conquistadas por cada jugador;
-* posiciones finales de las fichas;
-* casas que quedaron sin conquistar.
+- cantidad de turnos realizados;
+- casas conquistadas por cada jugador;
+- posiciones finales de las fichas;
+- casas que quedaron sin conquistar.
 
 # Ejecución con Node.js
 
@@ -204,6 +206,18 @@ También se puede indicar una semilla:
 node index.js 123
 ```
 
+Por ejemplo, también se realizaron pruebas con:
+
+```text
+node index.js 456
+```
+
+y:
+
+```text
+node index.js 789
+```
+
 # Ejemplos de salida
 
 ## Ejemplo 1 - Semilla 123
@@ -223,9 +237,10 @@ Casas iniciales:
 Resultado final:
 
 ```text
+FIN DEL JUEGO
 Turnos realizados: 50
-Jugador 1 - casas conquistadas: 0
-Jugador 2 - casas conquistadas: 0
+Jugador 1 - casas conquistadas: 0 - posición: [ [ 4, 0 ] ]
+Jugador 2 - casas conquistadas: 0 - posición: [ [ 1, 9 ] ]
 Casas restantes: [ [ 1, 5 ], [ 3, 1 ], [ 2, 8 ], [ 4, 8 ], [ 7, 3 ] ]
 ```
 
@@ -250,9 +265,10 @@ Durante la ejecución se produjeron conquistas de casas y se generaron nuevas fi
 Resultado final:
 
 ```text
+FIN DEL JUEGO
 Turnos realizados: 50
-Jugador 1 - casas conquistadas: 0
-Jugador 2 - casas conquistadas: 3
+Jugador 1 - casas conquistadas: 0 - posición: [ [ 2, 0 ] ]
+Jugador 2 - casas conquistadas: 3 - posición: [ [ 9, 8 ], [ 1, 9 ], [ 5, 9 ], [ 0, 8 ] ]
 Casas restantes: [ [ 3, 7 ], [ 2, 3 ] ]
 ```
 
@@ -275,9 +291,10 @@ Casas iniciales:
 Resultado final:
 
 ```text
+FIN DEL JUEGO
 Turnos realizados: 50
-Jugador 1 - casas conquistadas: 1
-Jugador 2 - casas conquistadas: 1
+Jugador 1 - casas conquistadas: 1 - posición: [ [ 2, 0 ], [ 1, 0 ] ]
+Jugador 2 - casas conquistadas: 1 - posición: [ [ 5, 9 ], [ 6, 9 ] ]
 Casas restantes: [ [ 6, 2 ], [ 2, 3 ], [ 7, 3 ] ]
 ```
 
@@ -285,7 +302,7 @@ En este ejemplo los dos jugadores lograron conquistar una casa.
 
 # Decisiones de modelado
 
-Para representar el juego se tomaron las siguientes decisiones:
+Para representar el juego se tomaron las siguientes decisiones.
 
 ### Tablero
 
@@ -342,10 +359,10 @@ El juego también puede finalizar antes si todas las casas son conquistadas.
 Se realizaron tres ejecuciones utilizando diferentes semillas:
 
 | Semilla | Casas conquistadas por Jugador 1 | Casas conquistadas por Jugador 2 | Casas restantes |
-| ------- | -------------------------------: | -------------------------------: | --------------: |
-| 123     |                                0 |                                0 |               5 |
-| 456     |                                0 |                                3 |               2 |
-| 789     |                                1 |                                1 |               3 |
+| ------- | --------------------------------: | --------------------------------: | --------------: |
+| 123     | 0                                 | 0                                 | 5               |
+| 456     | 0                                 | 3                                 | 2               |
+| 789     | 1                                 | 1                                 | 3               |
 
 Las tres ejecuciones se realizaron mediante Node.js y finalizaron correctamente después de 50 turnos.
 
@@ -355,11 +372,53 @@ Las diferentes semillas generaron diferentes posiciones iniciales de las casas.
 
 El proyecto fue inicializado utilizando Git para llevar un registro de los cambios.
 
-Commit realizado:
+Se realizaron commits durante el desarrollo del proyecto.
+
+## Primer commit
 
 ```text
 c5800d2 Crear juego Casas en Disputa
 ```
+
+Este commit corresponde a la creación inicial del juego.
+
+## Segundo commit
+
+Después se completó y actualizó el archivo `README.md`.
+
+El cambio se agregó y se realizó el siguiente commit:
+
+```text
+6d83981 Completar README del proyecto
+```
+
+El commit se realizó utilizando:
+
+```text
+git add README.md
+```
+
+y luego:
+
+```text
+git commit -m "Completar README del proyecto"
+```
+
+Finalmente se enviaron los cambios a GitHub mediante:
+
+```text
+git push
+```
+
+El resultado del `git push` indicó:
+
+```text
+c5800d2..6d83981  master -> master
+```
+
+Esto significa que el nuevo commit fue enviado correctamente al repositorio remoto.
+
+## Estado del repositorio
 
 El estado del repositorio fue comprobado con:
 
@@ -371,10 +430,35 @@ y se obtuvo:
 
 ```text
 On branch master
+Your branch is up to date with 'origin/master'.
+
 nothing to commit, working tree clean
 ```
 
-Esto indica que no había cambios pendientes al momento de la comprobación.
+Esto indica que no había cambios pendientes y que la rama local estaba actualizada con el repositorio remoto.
+
+## Historial de commits
+
+El historial se comprobó utilizando:
+
+```text
+git log --oneline
+```
+
+El resultado fue:
+
+```text
+6d83981 (HEAD -> master, origin/master, origin/HEAD) Completar README del proyecto
+c5800d2 Crear juego Casas en Disputa
+```
+
+Esto permite comprobar los dos commits realizados en el proyecto.
+
+# Repositorio
+
+El proyecto se encuentra en GitHub:
+
+https://github.com/alupizarro/2-CASAS-EN-DISPUTA
 
 # Archivos del proyecto
 
@@ -382,11 +466,40 @@ La carpeta del proyecto contiene:
 
 ```text
 2-CASAS-EN-DISPUTA
+
 │
 ├── INDEX.JS
+│
 └── README.md
 ```
 
 `INDEX.JS` contiene la implementación del juego.
 
-`README.md` contiene la descripción del proyecto, las decisiones de modelado, la forma de ejecución y los ejemplos obtenidos mediante Node.js.
+`README.md` contiene la descripción del proyecto, las decisiones de modelado, la forma de ejecución, las pruebas realizadas y la información de Git.
+
+# Comprobación final
+
+Para comprobar que el proyecto se encuentra correctamente guardado y actualizado se utilizaron los siguientes comandos:
+
+```text
+git status
+```
+
+```text
+git log --oneline
+```
+
+El repositorio quedó con el siguiente historial:
+
+```text
+6d83981 (HEAD -> master, origin/master, origin/HEAD) Completar README del proyecto
+c5800d2 Crear juego Casas en Disputa
+```
+
+El estado final fue:
+
+```text
+nothing to commit, working tree clean
+```
+
+Por lo tanto, el proyecto quedó guardado en Git y sincronizado con GitHub.
